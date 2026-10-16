@@ -96,6 +96,22 @@
   }
   button.btn { border: 0; cursor: pointer; font-size: 1rem; }
 
+
+  /* Kiddush sponsors */
+  .sponsors { list-style: none; max-width: 640px; margin: 0 auto 28px; font-family: system-ui, sans-serif; }
+  .sponsors li {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    padding: 14px 18px; background: var(--cream); border-left: 4px solid var(--gold);
+    border-radius: 4px; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,.05);
+  }
+  .sponsors .when { color: var(--navy); font-weight: 600; }
+  .sponsors .when small { display: block; color: var(--muted); font-weight: normal; }
+  .sponsors .who { text-align: right; }
+  .sponsors .open { color: var(--muted); font-style: italic; }
+  .sponsors .open a { color: var(--navy); font-style: normal; font-weight: 600; }
+  .center { text-align: center; }
+  .btn.dark { background: var(--navy); color: #fff; }
+
   footer {
     background: var(--navy-dark); color: #aaa; text-align: center;
     padding: 24px; font-family: system-ui, sans-serif; font-size: .85rem;
@@ -111,6 +127,7 @@
     <a href="#thisweek">This Week</a>
     <a href="#about">About</a>
     <a href="#services">Services</a>
+    <a href="#kiddush">Kiddush</a>
     <a href="#events">Events</a>
     <a href="#classes">Classes</a>
     <a href="#contact">Contact</a>
@@ -193,6 +210,37 @@
       </div>
     </div>
     <p class="note">Regular times are placeholders — please confirm the schedule with the shul.</p>
+  </div>
+</section>
+
+<section id="kiddush">
+  <div class="wrap">
+    <h2>Kiddush Sponsors</h2>
+    <div class="rule"></div>
+    <ul class="sponsors">
+      <li>
+        <span class="when">Oct 17<small>Parshas Noach</small></span>
+        <span class="who open">Available &middot; <a href="mailto:info@millrodshul.org?subject=Kiddush%20sponsorship%20-%20Oct%2017">Sponsor</a></span>
+      </li>
+      <li>
+        <span class="when">Oct 24<small>Parshas Lech Lecha</small></span>
+        <span class="who open">Available &middot; <a href="mailto:info@millrodshul.org?subject=Kiddush%20sponsorship%20-%20Oct%2024">Sponsor</a></span>
+      </li>
+      <li>
+        <span class="when">Oct 31<small>Parshas Vayera</small></span>
+        <span class="who open">Available &middot; <a href="mailto:info@millrodshul.org?subject=Kiddush%20sponsorship%20-%20Oct%2031">Sponsor</a></span>
+      </li>
+      <li>
+        <span class="when">Nov 7<small>Parshas Chayei Sarah</small></span>
+        <span class="who open">Available &middot; <a href="mailto:info@millrodshul.org?subject=Kiddush%20sponsorship%20-%20Nov%207">Sponsor</a></span>
+      </li>
+      <li>
+        <span class="when">Nov 14<small>Parshas Toldos</small></span>
+        <span class="who open">Available &middot; <a href="mailto:info@millrodshul.org?subject=Kiddush%20sponsorship%20-%20Nov%2014">Sponsor</a></span>
+      </li>
+    </ul>
+    <p class="center"><a class="btn dark" href="mailto:info@millrodshul.org?subject=Kiddush%20sponsorship">Sponsor a Kiddush</a></p>
+    <p class="note">Celebrating a simcha, yahrzeit or just want to make Shabbos special? Sponsor a kiddush for the community.</p>
   </div>
 </section>
 

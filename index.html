@@ -76,6 +76,7 @@
     padding: 24px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,.06);
   }
   .alt-bg .card { background: var(--cream); }
+  #thisweek .grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
   .card h3 { color: var(--navy); font-size: 1.3rem; margin-bottom: 10px; }
   .card ul { list-style: none; font-family: system-ui, sans-serif; font-size: .95rem; }
   .card li { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px dotted #ccc; }
@@ -107,6 +108,7 @@
 <header class="nav">
   <a class="brand" href="#top">✡ Rabbi Millrod's <span>Shul</span></a>
   <nav>
+    <a href="#thisweek">This Week</a>
     <a href="#about">About</a>
     <a href="#services">Services</a>
     <a href="#events">Events</a>
@@ -123,7 +125,35 @@
   <a class="btn alt" href="#contact">Visit Us</a>
 </div>
 
-<section id="about" class="about">
+<section id="thisweek">
+  <div class="wrap">
+    <h2>This Week &mdash; Parshas Noach</h2>
+    <div class="rule"></div>
+    <div class="grid">
+      <div class="card">
+        <h3>Friday Night &middot; Oct 16</h3>
+        <ul>
+          <li><span>Candle lighting</span><b>6:08 PM</b></li>
+          <li><span>Mincha / Kabbalas Shabbos</span><b>6:08 PM</b></li>
+          <li><span>Sunset</span><b>6:26 PM</b></li>
+          <li><span>Maariv</span><b>After Kabbalas Shabbos</b></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Shabbos Day &middot; Oct 17</h3>
+        <ul>
+          <li><span>Shacharis</span><b>9:00 AM</b></li>
+          <li><span>Kiddush</span><b>After davening</b></li>
+          <li><span>Mincha</span><b>Before sunset (6:24 PM)</b></li>
+          <li><span>Shabbos ends (Havdalah)</span><b>7:04 PM</b></li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">Times for Baltimore, MD. Shabbos ends at 8.5&deg; below the horizon.</p>
+  </div>
+</section>
+
+<section id="about" class="about alt-bg">
   <div class="wrap">
     <h2>Welcome</h2>
     <div class="rule"></div>
@@ -132,7 +162,7 @@
   </div>
 </section>
 
-<section id="services" class="alt-bg">
+<section id="services">
   <div class="wrap">
     <h2>Service Times</h2>
     <div class="rule"></div>
@@ -160,11 +190,11 @@
         </ul>
       </div>
     </div>
-    <p class="note">Times are placeholders — please confirm the current schedule with the shul.</p>
+    <p class="note">Regular times are placeholders — please confirm the schedule with the shul.</p>
   </div>
 </section>
 
-<section id="events">
+<section id="events" class="alt-bg">
   <div class="wrap">
     <h2>Community Events</h2>
     <div class="rule"></div>
@@ -176,7 +206,7 @@
   </div>
 </section>
 
-<section id="classes" class="alt-bg">
+<section id="classes">
   <div class="wrap">
     <h2>Torah Classes</h2>
     <div class="rule"></div>
@@ -193,7 +223,7 @@
     <h2>Visit &amp; Contact</h2>
     <div class="rule"></div>
     <div class="grid">
-      <div class="card"><h3>Address</h3><p>123 Main Street<br>Your City, State 00000</p></div>
+      <div class="card"><h3>Address</h3><p>123 Main Street<br>Baltimore, MD 00000</p></div>
       <div class="card"><h3>Phone</h3><p>(555) 123-4567</p></div>
       <div class="card"><h3>Email</h3><p>info@millrodshul.org</p></div>
     </div>

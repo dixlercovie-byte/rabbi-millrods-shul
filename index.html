@@ -112,6 +112,20 @@
   .center { text-align: center; }
   .btn.dark { background: var(--navy); color: #fff; }
 
+
+  /* Print */
+  .print-only { display: none; }
+  @media print {
+    header.nav, .hero, footer, .no-print,
+    section:not(#thisweek) { display: none !important; }
+    body { background: #fff; }
+    section#thisweek { padding: 0; background: #fff; }
+    .print-only { display: block; text-align: center; margin-bottom: 18px; }
+    .print-only h1 { font-size: 1.8rem; color: var(--navy); }
+    .card { box-shadow: none; border: 1px solid #ccc; break-inside: avoid; }
+    .grid { grid-template-columns: 1fr 1fr; }
+  }
+
   footer {
     background: var(--navy-dark); color: #aaa; text-align: center;
     padding: 24px; font-family: system-ui, sans-serif; font-size: .85rem;
@@ -143,6 +157,7 @@
 
 <section id="thisweek">
   <div class="wrap">
+    <div class="print-only"><h1>&#10033; Rabbi Millrod's Shul</h1></div>
     <h2>This Week &mdash; Parshas Noach</h2>
     <div class="rule"></div>
     <div class="grid">
@@ -168,6 +183,7 @@
       </div>
     </div>
     <p class="note">Times for Baltimore, MD. Shabbos ends 45 or 72 minutes after sunset.</p>
+    <p class="center no-print"><button class="btn dark" type="button" onclick="window.print()">&#128424; Print This Week's Schedule</button></p>
   </div>
 </section>
 

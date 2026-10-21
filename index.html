@@ -37,7 +37,7 @@
   .brand { font-size: 1.2rem; letter-spacing: .5px; text-decoration: none; }
   .brand span { color: var(--gold); }
   nav a {
-    text-decoration: none; margin-left: 20px; font-size: .95rem;
+    text-decoration: none; margin-inline-start: 20px; font-size: .95rem;
     font-family: system-ui, sans-serif; opacity: .9;
   }
   nav a:hover { color: var(--gold); opacity: 1; }
@@ -101,17 +101,28 @@
   .sponsors { list-style: none; max-width: 640px; margin: 0 auto 28px; font-family: system-ui, sans-serif; }
   .sponsors li {
     display: flex; justify-content: space-between; align-items: center; gap: 12px;
-    padding: 14px 18px; background: var(--cream); border-left: 4px solid var(--gold);
+    padding: 14px 18px; background: var(--cream); border-inline-start: 4px solid var(--gold);
     border-radius: 4px; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,.05);
   }
   .sponsors .when { color: var(--navy); font-weight: 600; }
   .sponsors .when small { display: block; color: var(--muted); font-weight: normal; }
-  .sponsors .who { text-align: right; }
+  .sponsors .who { text-align: end; }
   .sponsors .open { color: var(--muted); font-style: italic; }
   .sponsors .open a { color: var(--navy); font-style: normal; font-weight: 600; }
   .center { text-align: center; }
   .btn.dark { background: var(--navy); color: #fff; }
 
+
+  /* Language toggle */
+  .lang-btn {
+    margin-inline-start: 20px; padding: 4px 12px; cursor: pointer;
+    background: transparent; color: var(--gold); border: 1px solid var(--gold);
+    border-radius: 4px; font: .9rem system-ui, sans-serif;
+  }
+  .lang-btn:hover { background: var(--gold); color: var(--navy-dark); }
+  html[lang="he"] span[lang="he"] { display: none; }
+  html[lang="he"] body { font-family: "Times New Roman", Georgia, serif; }
+  @media (max-width: 560px) { .lang-btn { margin-inline-start: 0; } }
 
   /* Print */
   .print-only { display: none; }
@@ -130,7 +141,7 @@
     background: var(--navy-dark); color: #aaa; text-align: center;
     padding: 24px; font-family: system-ui, sans-serif; font-size: .85rem;
   }
-  @media (max-width: 560px) { nav a { margin: 0 10px 0 0; } header.nav { gap: 8px; } }
+  @media (max-width: 560px) { nav a { margin: 0; margin-inline-end: 10px; } header.nav { gap: 8px; } }
 </style>
 </head>
 <body>
@@ -144,6 +155,7 @@
     <a href="#events">Events</a>
     <a href="#classes">Classes</a>
     <a href="#contact">Contact</a>
+    <button id="langBtn" class="lang-btn" type="button" aria-label="Switch language">עברית</button>
   </nav>
 </header>
 
@@ -276,10 +288,10 @@
     <div class="rule"></div>
     <div class="grid">
       <div class="card"><h3>Address</h3><p>Next to Shomrei Emunah<br>Baltimore, MD</p></div>
-      <div class="card"><h3>Phone</h3><p>(555) 123-4567</p></div>
-      <div class="card"><h3>Email</h3><p>info@millrodshul.org</p></div>
+      <div class="card"><h3>Phone</h3><p><bdi>(555) 123-4567</bdi></p></div>
+      <div class="card"><h3>Email</h3><p><bdi>info@millrodshul.org</bdi></p></div>
     </div>
-    <form onsubmit="event.preventDefault(); this.innerHTML='<p style=&quot;text-align:center&quot;>Thank you! We will be in touch.</p>';">
+    <form onsubmit="event.preventDefault(); this.innerHTML='<p style=&quot;text-align:center&quot;>'+(document.documentElement.lang==='he'?'תודה! ניצור איתכם קשר.':'Thank you! We will be in touch.')+'</p>';">
       <input type="text" placeholder="Your name" required>
       <input type="email" placeholder="Your email" required>
       <textarea rows="4" placeholder="How can we help?" required></textarea>
@@ -289,6 +301,126 @@
 </section>
 
 <footer>© 2026 Rabbi Millrod's Shul · All are welcome</footer>
+
+
+<script>
+(function () {
+  var D = {
+    "This Week": "השבוע", "Services": "תפילות", "Kiddush": "קידוש", "Events": "אירועים",
+    "Classes": "שיעורים", "Contact": "צור קשר",
+    "✡ Rabbi Millrod's": "✡ בית הכנסת של הרב", "Shul": "מילרוד",
+    "Rabbi Millrod's Shul": "בית הכנסת של הרב מילרוד",
+    "✱ Rabbi Millrod's Shul": "✱ בית הכנסת של הרב מילרוד",
+    "A warm, welcoming home for prayer, Torah learning and community — for every Jew, wherever you are on your journey.":
+      "בית חם ומזמין לתפילה, ללימוד תורה ולקהילה — לכל יהודי, בכל מקום שבו הוא נמצא במסעו.",
+    "Service Times": "זמני תפילות", "Visit Us": "בקרו אותנו",
+    "Candle lighting": "הדלקת נרות", "Mincha / Kabbalas Shabbos": "מנחה / קבלת שבת",
+    "Shekia (": "שקיעה", ")": "", "Maariv": "מעריב", "After Kabbalas Shabbos": "אחרי קבלת שבת",
+    "Shacharis": "שחרית", "Kiddush": "קידוש", "Mincha": "מנחה", "Mincha / Maariv": "מנחה / מעריב",
+    "After davening": "אחרי התפילה", "Before sunset": "לפני השקיעה",
+    "Shabbos ends (45 min)": "צאת השבת (45 דק׳)",
+    "Shabbos ends (72 min, Havdalah)": "צאת השבת (72 דק׳, הבדלה)",
+    "Times for Baltimore, MD. Shabbos ends 45 or 72 minutes after sunset.":
+      "הזמנים לבולטימור, מרילנד. צאת השבת 45 או 72 דקות אחרי השקיעה.",
+    "🖨 Print This Week's Schedule": "🖨 הדפסת לוח השבוע",
+    "Weekday": "ימי חול", "Friday": "יום שישי", "Shabbos": "שבת",
+    "Regular times are placeholders — please confirm the schedule with the shul.":
+      "הזמנים הקבועים הם זמניים — נא לאמת את הלוח עם בית הכנסת.",
+    "Kiddush Sponsors": "נותני הקידוש", "Available ·": "פנוי ·", "Sponsor": "לנדב",
+    "Sponsor a Kiddush": "נדבו קידוש",
+    "Celebrating a simcha, yahrzeit or just want to make Shabbos special? Sponsor a kiddush for the community.":
+      "חוגגים שמחה, יארצייט, או סתם רוצים להפוך את השבת למיוחדת? נדבו קידוש לקהילה.",
+    "Community Events": "אירועי הקהילה", "Shabbos Dinners": "סעודות שבת",
+    "Join us for a festive Friday night meal with singing, divrei Torah and good company.":
+      "הצטרפו אלינו לסעודת ליל שבת חגיגית עם זמירות, דברי תורה וחברה טובה.",
+    "Holiday Celebrations": "חגיגות החגים",
+    "Rosh Hashanah, Sukkos, Chanukah, Purim, Pesach and more — celebrated together as a community.":
+      "ראש השנה, סוכות, חנוכה, פורים, פסח ועוד — חוגגים יחד כקהילה.",
+    "Lifecycle Simchas": "שמחות",
+    "Bar and Bat Mitzvahs, weddings, brissim and kiddushim — we're here to share in your joy.":
+      "בר ובת מצווה, חתונות, בריתות וקידושים — אנחנו כאן לשמוח אתכם.",
+    "Torah Classes": "שיעורי תורה", "Daf Yomi": "דף יומי",
+    "Daily Talmud study for all levels.": "לימוד תלמוד יומי לכל הרמות.",
+    "Parsha Shiur": "שיעור פרשה",
+    "Weekly look at the Torah portion with Rabbi Millrod.": "עיון שבועי בפרשת השבוע עם הרב מילרוד.",
+    "Learn Hebrew": "לימוד עברית",
+    "Beginner-friendly classes for adults and kids.": "שיעורים למתחילים, למבוגרים ולילדים.",
+    "Visit & Contact": "ביקור וצור קשר", "Address": "כתובת", "Phone": "טלפון", "Email": "אימייל",
+    "Next to Shomrei Emunah": "ליד שומרי אמונה", "Baltimore, MD": "בולטימור, מרילנד",
+    "Send Message": "שליחת הודעה",
+    "© 2026 Rabbi Millrod's Shul · All are welcome": "© 2026 בית הכנסת של הרב מילרוד · כולם מוזמנים"
+  };
+  var PH = { "Your name": "שמכם", "Your email": "האימייל שלכם", "How can we help?": "איך נוכל לעזור?" };
+  var MONTHS = { Jan: "ינואר", Feb: "פברואר", Mar: "מרץ", Apr: "אפריל", May: "מאי", Jun: "יוני",
+    Jul: "יולי", Aug: "אוגוסט", Sep: "ספטמבר", Oct: "אוקטובר", Nov: "נובמבר", Dec: "דצמבר" };
+  var PARSHA = {
+    bereishit: "בראשית", bereshit: "בראשית", noach: "נח", lechlecha: "לך לך", vayera: "וירא",
+    chayeisarah: "חיי שרה", chayesarah: "חיי שרה", toldos: "תולדות", toldot: "תולדות",
+    vayeitzei: "ויצא", vayetzei: "ויצא", vayetze: "ויצא", vayishlach: "וישלח",
+    vayeishev: "וישב", vayeshev: "וישב", mikeitz: "מקץ", miketz: "מקץ", vayigash: "ויגש", vayechi: "ויחי",
+    shemos: "שמות", shemot: "שמות", vaera: "וארא", bo: "בא", beshalach: "בשלח", yisro: "יתרו",
+    yitro: "יתרו", mishpatim: "משפטים", terumah: "תרומה", tetzaveh: "תצוה", kisisa: "כי תשא",
+    kitisa: "כי תשא", vayakhel: "ויקהל", pekudei: "פקודי", vayikra: "ויקרא", tzav: "צו",
+    shemini: "שמיני", tazria: "תזריע", metzora: "מצורע", achareimos: "אחרי מות", acharemot: "אחרי מות",
+    acharei: "אחרי מות", kedoshim: "קדושים", emor: "אמור", behar: "בהר", bechukosai: "בחוקותי",
+    bechukotai: "בחוקותי", bamidbar: "במדבר", naso: "נשא", behaaloscha: "בהעלותך",
+    behaalotecha: "בהעלותך", shelach: "שלח", korach: "קרח", chukas: "חוקת", chukat: "חוקת",
+    balak: "בלק", pinchas: "פינחס", matos: "מטות", matot: "מטות", masei: "מסעי", devarim: "דברים",
+    vaeschanan: "ואתחנן", vaetchanan: "ואתחנן", eikev: "עקב", reeh: "ראה", shoftim: "שופטים",
+    kisetzei: "כי תצא", kitetze: "כי תצא", kisavo: "כי תבוא", kitavo: "כי תבוא", nitzavim: "נצבים",
+    vayeilech: "וילך", haazinu: "האזינו", vezosHaberacha: "וזאת הברכה", vezoshaberacha: "וזאת הברכה"
+  };
+  function parsha(name) {
+    return name.split(/\s*[-–\/&]\s*/).map(function (part) {
+      var k = part.toLowerCase().replace(/[^a-z]/g, "");
+      return PARSHA[k] || part;
+    }).join(" – ");
+  }
+  function date(mon, day) { return MONTHS[mon] ? day + " ב" + MONTHS[mon] : null; }
+  function tr(t) {
+    if (Object.prototype.hasOwnProperty.call(D, t)) return D[t];
+    var m;
+    if ((m = /^This Week\s+—\s+Parshas (.+)$/.exec(t))) return "השבוע — פרשת " + parsha(m[1]);
+    if ((m = /^Parshas (.+)$/.exec(t))) return "פרשת " + parsha(m[1]);
+    if ((m = /^(Friday Night|Shabbos Day) · ([A-Z][a-z]{2}) (\d+)$/.exec(t))) {
+      var d = date(m[2], m[3]);
+      return d && ((m[1] === "Friday Night" ? "ליל שבת" : "יום שבת") + " · " + d);
+    }
+    if ((m = /^([A-Z][a-z]{2}) (\d+)$/.exec(t))) return date(m[1], m[2]);
+    if ((m = /^(\d{1,2}:\d{2}) (AM|PM)$/.exec(t))) return m[1] + " " + (m[2] === "AM" ? "לפנה״צ" : "אחה״צ");
+    if ((m = /^(\d+) min before sunset$/.exec(t))) return m[1] + " דק׳ לפני השקיעה";
+    return null;
+  }
+  var orig = new WeakMap(), BTN = document.getElementById("langBtn");
+  function apply(lang) {
+    var he = lang === "he", root = document.documentElement;
+    root.lang = lang; root.dir = he ? "rtl" : "ltr";
+    var w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null), n;
+    while ((n = w.nextNode())) {
+      var p = n.parentNode;
+      if (!p || /^(SCRIPT|STYLE)$/.test(p.nodeName) || p === BTN) continue;
+      if (!orig.has(n)) orig.set(n, n.nodeValue);
+      var o = orig.get(n), m = /^(\s*)([\s\S]*?)(\s*)$/.exec(o), r = null;
+      if (he && m[2]) r = tr(m[2]);
+      n.nodeValue = r !== null ? m[1] + r + m[3] : o;
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("[placeholder]"), function (el) {
+      if (!el.hasAttribute("data-en")) el.setAttribute("data-en", el.getAttribute("placeholder"));
+      var en = el.getAttribute("data-en");
+      el.setAttribute("placeholder", he && PH[en] ? PH[en] : en);
+    });
+    document.title = he ? "בית הכנסת של הרב מילרוד" : "Rabbi Millrod's Shul";
+    BTN.textContent = he ? "English" : "עברית";
+    try { localStorage.setItem("lang", lang); } catch (e) {}
+  }
+  BTN.addEventListener("click", function () {
+    apply(document.documentElement.lang === "he" ? "en" : "he");
+  });
+  var saved = null;
+  try { saved = localStorage.getItem("lang"); } catch (e) {}
+  if (saved === "he") apply("he");
+})();
+</script>
 
 </body>
 </html>
